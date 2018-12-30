@@ -5,7 +5,6 @@ import { ApplicationException } from '../../util/ApplicationException.js';
 export class NegociacaoService {
 
     constructor() {
-
         this._http = new HttpService();
     }
 
@@ -14,14 +13,13 @@ export class NegociacaoService {
         return this._http
             .get('negociacoes/semana')
             .then(
-            dados =>
+                dados =>
                 dados.map(objeto =>
-                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-            ,
-            err => {
+                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)),
+                err => {
 
-                throw new ApplicationException('Não foi possível obter as negociações da semana');
-            }
+                    throw new ApplicationException('Não foi possível obter as negociações da semana');
+                }
             );
     }
 
@@ -30,13 +28,12 @@ export class NegociacaoService {
         return this._http
             .get('negociacoes/anterior')
             .then(
-            dados => dados.map(objeto =>
-                new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-            ,
-            err => {
+                dados => dados.map(objeto =>
+                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)),
+                err => {
 
-                throw new ApplicationException('Não foi possível obter as negociações da semana anterior');
-            }
+                    throw new ApplicationException('Não foi possível obter as negociações da semana anterior');
+                }
             );
     }
 
@@ -45,12 +42,11 @@ export class NegociacaoService {
         return this._http
             .get('negociacoes/retrasada')
             .then(
-            dados => dados.map(objeto =>
-                new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor))
-            ,
-            err => {
-                throw new ApplicationException('Não foi possível obter as negociações da semana retrasada');
-            }
+                dados => dados.map(objeto =>
+                    new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)),
+                err => {
+                    throw new ApplicationException('Não foi possível obter as negociações da semana retrasada');
+                }
             );
     }
 
